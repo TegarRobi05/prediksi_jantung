@@ -29,23 +29,29 @@ with st.form("form_penyakit_jantung"):
 if submit:
     features = np.array([[
         age,
-        1 if sex == 'Laki-laki' else 0,
+        1 if sex == 'Laki-laki' else 0,  # Encoding for sex
         cp,
         trestbps,
         chol,
-        1 if fbs == 'Ya' else 0,
+        1 if fbs == 'Ya' else 0,  # Encoding for fasting blood sugar
         restecg,
         thalach,
-        1 if exang == 'Ya' else 0,
+        1 if exang == 'Ya' else 0,  # Encoding for exercise angina
         oldpeak,
         slope,
         ca,
         thal
     ]])
 
-    prediction = model.predict(features)[0]
+    # Debugging: Print the shape of the features array
+    st.write("Features shape:", features.shape)
 
-    if prediction == 1:
-        st.error("Pasien berisiko terkena penyakit jantung.")
-    else:
-        st.success("Pasien tidak berisiko terkena penyakit jantung.")
+    try:
+        prediction = model.predict(features)[0]
+
+        if prediction == 1:
+            st.error("Pasien berisiko terkena penyakit jantung.")
+        else:
+            st.success("Pasien tidak berisiko terkena penyakit jantung.")
+    except ValueError as e:
+        st.error(f"Error in prediction: {e}")
