@@ -3,7 +3,7 @@ import numpy as np
 import joblib
 
 # Load model
-model = joblib.load('penyakit_model.pkl')
+model = joblib.load('jantung_model.pkl')
 
 st.title("Prediksi Penyakit Jantung")
 
