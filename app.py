@@ -49,4 +49,3 @@ if submit:
         st.error("Pasien berisiko terkena penyakit jantung.")
     else:
         st.success("Pasien tidak berisiko terkena penyakit jantung.")
-
